@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ארגז כלים – פנימיית עיינות</title>
+<meta name="description" content="כל הכלים והמידע של צוות פנימיית עיינות במקום אחד">
+<meta name="theme-color" content="#2C5F2D">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ארגז כלים">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF6EC; --paper:#FFFDF8; --forest:#2C5F2D; --moss:#5E8C4F;
+  --mint:#CFE6D2; --ink:#2A3328; --muted:#6B7466; --line:#ECE3D2;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{
+  font-family:"Rubik",system-ui,sans-serif; color:var(--ink);
+  background:
+    radial-gradient(120% 60% at 100% 0%, #EAF3E6 0%, transparent 60%),
+    radial-gradient(90% 50% at 0% 100%, #F6EBD6 0%, transparent 60%),
+    var(--cream);
+  min-height:100vh; min-height:100dvh;
+  padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 96px);
+}
+.wrap{max-width:520px;margin:0 auto;padding:0 18px}
+
+/* header */
+header{padding:22px 0 8px;text-align:center}
+.logo-card{
+  display:inline-block;background:var(--paper);border-radius:22px;
+  padding:12px 20px;box-shadow:0 6px 20px rgba(44,95,45,.10);
+}
+.logo-card img{display:block;height:58px;width:auto}
+h1{margin:16px 0 2px;font-size:26px;font-weight:700;color:var(--forest);letter-spacing:-.3px}
+.sub{margin:0;color:var(--muted);font-size:15px}
+
+/* sections */
+section{margin-top:26px}
+section h2{
+  font-size:14px;font-weight:600;color:var(--moss);margin:0 4px 12px;
+  display:flex;align-items:center;gap:8px;
+}
+section h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.panel{
+  background:rgba(255,253,248,.75);border:1px solid var(--line);
+  border-radius:28px;padding:18px 8px 6px;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);row-gap:14px}
+
+/* app icon */
+.app{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  text-decoration:none;color:var(--ink);padding:2px 2px 10px;
+}
+.tile{
+  width:64px;height:64px;border-radius:19px;display:grid;place-items:center;
+  box-shadow:0 6px 14px var(--sh, rgba(0,0,0,.12)), inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .15s ease;
+}
+.tile svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.app:active .tile{transform:scale(.9)}
+@media (hover:hover){.app:hover .tile{transform:translateY(-3px)}}
+.label{font-size:12.5px;line-height:1.25;text-align:center;font-weight:500;max-width:82px}
+
+/* colors */
+.c-cal  {background:linear-gradient(145deg,#4F8A4A,#2C5F2D);--sh:rgba(44,95,45,.30)}
+.c-gen  {background:linear-gradient(145deg,#5CC2B8,#2E8F88);--sh:rgba(46,143,136,.30)}
+.c-event{background:linear-gradient(145deg,#F0A85A,#D27F2E);--sh:rgba(210,127,46,.30)}
+.c-car  {background:linear-gradient(145deg,#6E9FD0,#3F70A6);--sh:rgba(63,112,166,.30)}
+.c-info {background:linear-gradient(145deg,#E9C25A,#C99A22);--sh:rgba(201,154,34,.30)}
+.c-bus  {background:linear-gradient(145deg,#E58B7A,#C25B4A);--sh:rgba(194,91,74,.30)}
+.c-plan {background:linear-gradient(145deg,#A58BC9,#7A5EA5);--sh:rgba(122,94,165,.30)}
+.c-book {background:linear-gradient(145deg,#8DB86A,#5E8C4F);--sh:rgba(94,140,79,.30)}
+
+/* dock */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;
+  padding:12px 18px calc(env(safe-area-inset-bottom) + 12px);
+  display:flex;justify-content:center;pointer-events:none;
+}
+.install{
+  pointer-events:auto;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:15px;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--forest);color:#fff;border-radius:999px;padding:13px 22px;
+  box-shadow:0 10px 24px rgba(44,95,45,.35);
+}
+.install svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.standalone .dock{display:none}
+
+footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:26px}
+
+/* modal */
+.sheet-bg{position:fixed;inset:0;background:rgba(30,40,28,.45);display:flex;align-items:flex-end;justify-content:center;z-index:10}
+[hidden]{display:none!important}
+.sheet{
+  background:var(--paper);width:100%;max-width:520px;border-radius:26px 26px 0 0;
+  padding:22px 22px calc(env(safe-area-inset-bottom) + 22px);
+  animation:up .25s ease;
+}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet h3{margin:0 0 6px;color:var(--forest);font-size:20px}
+.sheet p{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.5}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{
+  counter-increment:s;display:flex;gap:12px;align-items:flex-start;
+  padding:10px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.45;
+}
+.steps li::before{
+  content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--mint);color:var(--forest);display:grid;place-items:center;font-weight:700;font-size:14px;
+}
+.ico{display:inline-block;vertical-align:-4px;width:20px;height:20px;stroke:var(--forest);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.close{
+  margin-top:16px;width:100%;border:0;border-radius:16px;padding:14px;
+  font:inherit;font-weight:600;font-size:16px;background:var(--mint);color:var(--forest);cursor:pointer;
+}
+
+@media (max-width:350px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo-card"><img src="logo.png" alt="כפר הנוער עיינות"></div>
+    <h1>ארגז כלים</h1>
+    <p class="sub">כל מה שצוות הפנימייה צריך, במקום אחד</p>
+  </header>
+
+  <main id="sections"></main>
+
+  <footer>פנימיית עיינות · תשפ״ז</footer>
+</div>
+
+<div class="dock"><button class="install" id="installBtn" type="button">
+  <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7M9 11l3 3 3-3"/></svg>
+  שמירה כאפליקציה בטלפון
+</button></div>
+
+<div class="sheet-bg" id="sheetBg" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <h3 id="sheetTitle">שמירה כאפליקציה</h3>
+    <div id="sheetBody"></div>
+    <button class="close" id="closeBtn" type="button">הבנתי</button>
+  </div>
+</div>
+
+<script>
+/* ====== כאן מעדכנים את האייקונים ======
+   כדי להוסיף אייקון: מעתיקים שורה, משנים שם, קישור, צבע ואייקון.
+   צבעים: cal, gen, event, car, info, bus, plan, book
+   אייקונים: calendar, sparkle, clipboard, car, info, bus, compass, book          */
+const SECTIONS = [
+  { title: 'כלים', apps: [
+    { name: 'לו״ז כפרי',            url: 'https://bassonnofar.github.io/luaz-kafri/', color: 'cal',   icon: 'calendar' },
+    { name: 'מחולל פעילויות',       url: 'https://claude.ai/public/artifacts/32aaf2ac-5e6d-4c4c-830d-43dadff04b2f', color: 'gen', icon: 'sparkle' },
+    { name: 'היערכות לאירוע',       url: 'https://forms.gle/xvjSKRDHUwAueJwWA', color: 'event', icon: 'clipboard' },
+    { name: 'רכב הכפר',             url: 'https://bassonnofar.github.io/rechev-hakfar/', color: 'car', icon: 'car' },
+  ]},
+  { title: 'מידע ומסמכים', apps: [
+    { name: 'מידע חשוב',            url: 'https://docs.google.com/spreadsheets/d/1XDSZJx7xrgOJsNTJtmyZW4mexyFuAA3702ldKa9SBb8/edit?usp=drivesdk', color: 'info', icon: 'info' },
+    { name: 'הסעות ונוכחות נעל״ה',  url: 'https://docs.google.com/spreadsheets/d/113yIC6tMffuPE49TfYW3_FdhKmMrAdfG7ESzP0xEbhw/edit?usp=drivesdk', color: 'bus', icon: 'bus' },
+    { name: 'תוכנית חינוכית שנתית', url: 'https://docs.google.com/spreadsheets/d/1ZPgT8Lho50nPisCdL2E1dwDBY5u3lwSLa5qJRx6Zqv4/edit?usp=drivesdk', color: 'plan', icon: 'compass' },
+    { name: 'חוברת למדריך',         url: 'handbook.pdf', color: 'book', icon: 'book' },
+  ]},
+];
+
+const ICONS = {
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17.2h2"/>',
+  sparkle:  '<path d="M12 3l1.8 4.9L18.7 9.7l-4.9 1.8L12 16.4l-1.8-4.9L5.3 9.7l4.9-1.8z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>',
+  clipboard:'<rect x="5" y="4.5" width="14" height="16.5" rx="2.5"/><path d="M9 4.5V3.5h6v1"/><path d="M8.8 12.5l2.2 2.2 4.2-4.4"/>',
+  car:      '<path d="M5 16.5V12l1.8-4.6A2 2 0 0 1 8.7 6h6.6a2 2 0 0 1 1.9 1.4L19 12v4.5"/><path d="M3.5 16.5h17M5 12h14"/><circle cx="8" cy="17.5" r="1.8"/><circle cx="16" cy="17.5" r="1.8"/>',
+  info:     '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".6" fill="#fff"/>',
+  bus:      '<rect x="4.5" y="3.5" width="15" height="14" rx="3"/><path d="M4.5 11h15M9 3.5v7.5"/><path d="M7 17.5V20M17 17.5V20"/><circle cx="8" cy="14.3" r=".7" fill="#fff"/><circle cx="16" cy="14.3" r=".7" fill="#fff"/>',
+  compass:  '<circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+  book:     '<path d="M12 6.5C10 5 7.5 4.5 4 4.8v13.4c3.5-.3 6 .2 8 1.8 2-1.6 4.5-2.1 8-1.8V4.8c-3.5-.3-6 .2-8 1.7z"/><path d="M12 6.5V20"/>',
+};
+
+const main = document.getElementById('sections');
+for (const s of SECTIONS) {
+  const sec = document.createElement('section');
+  sec.innerHTML = `<h2>${s.title}</h2><div class="panel"><div class="grid"></div></div>`;
+  const grid = sec.querySelector('.grid');
+  for (const a of s.apps) {
+    const el = document.createElement('a');
+    el.className = 'app';
+    el.href = a.url;
+    el.target = '_blank';
+    el.rel = 'noopener';
+    el.innerHTML = `<span class="tile c-${a.color}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[a.icon] || ICONS.info}</svg></span><span class="label">${a.name}</span>`;
+    grid.appendChild(el);
+  }
+  main.appendChild(sec);
+}
+
+/* ====== שמירה כאפליקציה ====== */
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+if (isStandalone) document.documentElement.classList.add('standalone');
+
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; });
+window.addEventListener('appinstalled', () => document.documentElement.classList.add('standalone'));
+
+const ua = navigator.userAgent || '';
+const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isAndroid = /Android/i.test(ua);
+const inApp = /FBAN|FBAV|Instagram|WhatsApp|Line\/|; wv\)/i.test(ua);
+
+const shareIco = '<svg class="ico" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11v8.5h12V11"/></svg>';
+const dotsIco  = '<svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="12" cy="19" r="1.3"/></svg>';
+
+const bg = document.getElementById('sheetBg');
+const body = document.getElementById('sheetBody');
+function openSheet(html){ body.innerHTML = html; bg.hidden = false; }
+document.getElementById('closeBtn').onclick = () => bg.hidden = true;
+bg.addEventListener('click', e => { if (e.target === bg) bg.hidden = true; });
+
+document.getElementById('installBtn').onclick = async () => {
+  if (inApp) {
+    openSheet(`<p>הקישור נפתח בתוך וואטסאפ או פייסבוק, ומשם אי אפשר לשמור. פותחים קודם בדפדפן:</p>
+      <ol class="steps"><li>לוחצים על ${dotsIco} או על סמל השיתוף בפינת המסך</li>
+      <li>בוחרים "פתיחה בדפדפן" (Chrome או Safari)</li>
+      <li>שם לוחצים שוב על "שמירה כאפליקציה בטלפון"</li></ol>`);
+    return;
+  }
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    return;
+  }
+  if (isIOS) {
+    openSheet(`<p>באייפון שומרים דרך Safari:</p>
+      <ol class="steps"><li>לוחצים על כפתור השיתוף ${shareIco} בתחתית המסך</li>
+      <li>גוללים ובוחרים "הוספה למסך הבית"</li>
+      <li>לוחצים "הוספה" בפינה, והאייקון של ארגז הכלים יופיע במסך הבית</li></ol>`);
+  } else if (isAndroid) {
+    openSheet(`<p>באנדרואיד שומרים דרך Chrome:</p>
+      <ol class="steps"><li>לוחצים על ${dotsIco} בפינה העליונה</li>
+      <li>בוחרים "התקנת אפליקציה" או "הוספה למסך הבית"</li>
+      <li>מאשרים, והאייקון יופיע במסך הבית</li></ol>`);
+  } else {
+    openSheet(`<p>פותחים את הקישור הזה בטלפון ולוחצים שם על הכפתור. במחשב אפשר להתקין דרך סמל ההתקנה בשורת הכתובת של Chrome.</p>`);
+  }
+};
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>
