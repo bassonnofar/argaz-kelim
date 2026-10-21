@@ -1,4 +1,4 @@
-const CACHE = 'argaz-kelim-v1';
+const CACHE = 'argaz-kelim-v3';
 const SHELL = ['./', 'index.html', 'logo.png', 'manifest.json', 'icon-192.png', 'apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', e => {

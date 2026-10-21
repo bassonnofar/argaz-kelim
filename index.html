@@ -80,6 +80,11 @@ section h2::after{content:"";flex:1;height:1px;background:var(--line)}
 .c-info {background:linear-gradient(145deg,#E9C25A,#C99A22);--sh:rgba(201,154,34,.30)}
 .c-bus  {background:linear-gradient(145deg,#E58B7A,#C25B4A);--sh:rgba(194,91,74,.30)}
 .c-plan {background:linear-gradient(145deg,#A58BC9,#7A5EA5);--sh:rgba(122,94,165,.30)}
+.c-alum {background:linear-gradient(145deg,#B5C94A,#7E9A2A);--sh:rgba(126,154,42,.30)}
+.c-wa   {background:linear-gradient(145deg,#4FD07B,#1FA855);--sh:rgba(31,168,85,.30)}
+.c-fix  {background:linear-gradient(145deg,#8A96A3,#5C6875);--sh:rgba(92,104,117,.30)}
+.c-smart{background:linear-gradient(145deg,#5B8DEF,#3461C4);--sh:rgba(52,97,196,.30)}
+.c-money{background:linear-gradient(145deg,#E7849F,#C2577A);--sh:rgba(194,87,122,.30)}
 .c-book {background:linear-gradient(145deg,#8DB86A,#5E8C4F);--sh:rgba(94,140,79,.30)}
 
 /* dock */
@@ -167,12 +172,19 @@ const SECTIONS = [
     { name: 'מחולל פעילויות',       url: 'https://claude.ai/public/artifacts/32aaf2ac-5e6d-4c4c-830d-43dadff04b2f', color: 'gen', icon: 'sparkle' },
     { name: 'היערכות לאירוע',       url: 'https://forms.gle/xvjSKRDHUwAueJwWA', color: 'event', icon: 'clipboard' },
     { name: 'רכב הכפר',             url: 'https://bassonnofar.github.io/rechev-hakfar/', color: 'car', icon: 'car' },
+    { name: 'סמארט קמפוס',          url: 'https://ayanot.smart-campus.co.il/mobile-dashbord', color: 'smart', icon: 'campus' },
+    { name: 'דיווח תקלות',          url: 'https://ayanot.ylm.co.il/', color: 'fix', icon: 'wrench' },
+    { name: 'דיווח הוצאות',         url: 'https://script.google.com/macros/s/AKfycbx0CsYz3ACw8fAsVhLfZ4f5Mu7kGNfYgmj0KtvdZUFM8b1UdG9ZAk8rcCFdwKeF6Yb4/exec', color: 'money', icon: 'receipt' },
   ]},
   { title: 'מידע ומסמכים', apps: [
     { name: 'מידע חשוב',            url: 'https://docs.google.com/spreadsheets/d/1XDSZJx7xrgOJsNTJtmyZW4mexyFuAA3702ldKa9SBb8/edit?usp=drivesdk', color: 'info', icon: 'info' },
     { name: 'הסעות ונוכחות נעל״ה',  url: 'https://docs.google.com/spreadsheets/d/113yIC6tMffuPE49TfYW3_FdhKmMrAdfG7ESzP0xEbhw/edit?usp=drivesdk', color: 'bus', icon: 'bus' },
     { name: 'תוכנית חינוכית שנתית', url: 'https://docs.google.com/spreadsheets/d/1ZPgT8Lho50nPisCdL2E1dwDBY5u3lwSLa5qJRx6Zqv4/edit?usp=drivesdk', color: 'plan', icon: 'compass' },
     { name: 'חוברת למדריך',         url: 'handbook.pdf', color: 'book', icon: 'book' },
+  ]},
+  { title: 'בוגרים', apps: [
+    { name: 'עיינותים – אפליקציה',           url: 'https://bassonnofar.github.io/ayanotim/', color: 'alum', icon: 'sprout' },
+    { name: 'עיינותים – וואטסאפ', url: 'https://chat.whatsapp.com/KlRjpxZl9yT4To3XNaN7ho', color: 'wa', icon: 'chat' },
   ]},
 ];
 
@@ -184,6 +196,11 @@ const ICONS = {
   info:     '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".6" fill="#fff"/>',
   bus:      '<rect x="4.5" y="3.5" width="15" height="14" rx="3"/><path d="M4.5 11h15M9 3.5v7.5"/><path d="M7 17.5V20M17 17.5V20"/><circle cx="8" cy="14.3" r=".7" fill="#fff"/><circle cx="16" cy="14.3" r=".7" fill="#fff"/>',
   compass:  '<circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+  sprout:   '<path d="M12 21v-8.5"/><path d="M12 12.5C12 8.4 9 6 4.5 6c0 4.3 3 6.5 7.5 6.5z"/><path d="M12 15c0-4 2.6-6.6 7.5-6.6 0 4.2-2.8 6.6-7.5 6.6z"/><path d="M7.5 21h9"/>',
+  chat:     '<path d="M4.5 19.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18.6z"/><path d="M9.3 9.3c.2 2.3 2.4 4.6 5 5.2l1-1.1-1.6-.9-.7.7c-1-.4-1.9-1.3-2.4-2.4l.7-.7-.9-1.6z" fill="#fff" stroke-width="1"/>',
+  wrench:   '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  campus:   '<path d="M3.5 20.5h17M5 20.5V10l7-5 7 5v10.5"/><path d="M9.5 20.5v-5h5v5"/><path d="M9 11h.01M15 11h.01" stroke-width="2.6"/>',
+  receipt:  '<path d="M6 3.5h12v17l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3z"/><path d="M9 8.5h6M9 12h6M9 15.5h3.5"/>',
   book:     '<path d="M12 6.5C10 5 7.5 4.5 4 4.8v13.4c3.5-.3 6 .2 8 1.8 2-1.6 4.5-2.1 8-1.8V4.8c-3.5-.3-6 .2-8 1.7z"/><path d="M12 6.5V20"/>',
 };
 
@@ -193,6 +210,7 @@ for (const s of SECTIONS) {
   sec.innerHTML = `<h2>${s.title}</h2><div class="panel"><div class="grid"></div></div>`;
   const grid = sec.querySelector('.grid');
   for (const a of s.apps) {
+    if (!a.url) continue;
     const el = document.createElement('a');
     el.className = 'app';
     el.href = a.url;
