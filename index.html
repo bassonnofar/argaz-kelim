@@ -174,7 +174,7 @@ const SECTIONS = [
     { name: 'רכב הכפר',             url: 'https://bassonnofar.github.io/rechev-hakfar/', color: 'car', icon: 'car' },
     { name: 'סמארט קמפוס',          url: 'https://ayanot.smart-campus.co.il/mobile-dashbord', color: 'smart', icon: 'campus' },
     { name: 'דיווח תקלות',          url: 'https://ayanot.ylm.co.il/', color: 'fix', icon: 'wrench' },
-    { name: 'דיווח הוצאות',         url: 'https://script.google.com/macros/s/AKfycbx0CsYz3ACw8fAsVhLfZ4f5Mu7kGNfYgmj0KtvdZUFM8b1UdG9ZAk8rcCFdwKeF6Yb4/exec', color: 'money', icon: 'receipt' },
+    { name: 'דיווח הוצאות',         url: 'expenses.html', inside: true, color: 'money', icon: 'receipt' },
   ]},
   { title: 'מידע ומסמכים', apps: [
     { name: 'מידע חשוב',            url: 'https://docs.google.com/spreadsheets/d/1XDSZJx7xrgOJsNTJtmyZW4mexyFuAA3702ldKa9SBb8/edit?usp=drivesdk', color: 'info', icon: 'info' },
@@ -214,8 +214,7 @@ for (const s of SECTIONS) {
     const el = document.createElement('a');
     el.className = 'app';
     el.href = a.url;
-    el.target = '_blank';
-    el.rel = 'noopener';
+    if (!a.inside) { el.target = '_blank'; el.rel = 'noopener'; }
     el.innerHTML = `<span class="tile c-${a.color}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[a.icon] || ICONS.info}</svg></span><span class="label">${a.name}</span>`;
     grid.appendChild(el);
   }

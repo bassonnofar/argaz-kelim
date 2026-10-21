@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>דיווח הוצאות – ארגז כלים</title>
+<meta name="theme-color" content="#2C5F2D">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EC;--forest:#2C5F2D;--mint:#CFE6D2;--line:#ECE3D2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--cream);font-family:"Rubik",system-ui,sans-serif}
+body{display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
+.bar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 14px;background:var(--cream);border-bottom:1px solid var(--line);flex:none;
+}
+.bar a{
+  display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;font-size:15px;
+  color:var(--forest);background:var(--mint);border-radius:999px;padding:8px 14px;
+}
+.bar a.alt{background:transparent;font-weight:500;font-size:13.5px;padding:8px 4px;text-decoration:underline}
+.bar svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+iframe{flex:1;width:100%;border:0;background:#fff}
+</style>
+</head>
+<body>
+<div class="bar">
+  <a href="./"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>ארגז הכלים</a>
+  <a class="alt" id="ext" target="_blank" rel="noopener">לא נטען? פתיחה בחלון נפרד</a>
+</div>
+<iframe id="f" title="דיווח הוצאות" allow="camera"></iframe>
+<script>
+const URL_ = 'https://script.google.com/macros/s/AKfycbx0CsYz3ACw8fAsVhLfZ4f5Mu7kGNfYgmj0KtvdZUFM8b1UdG9ZAk8rcCFdwKeF6Yb4/exec';
+document.getElementById('f').src = URL_;
+document.getElementById('ext').href = URL_;
+</script>
+</body>
+</html>
